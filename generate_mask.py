@@ -6,12 +6,12 @@ from rasterio.features import rasterize
 from rasterio.crs import CRS
 
 # Path to the shapefile
-shapefile_path = r'D:\Narss\Hyperspectral Data\Abu Rhusheid_Train\Abu_Rhusheid_train.shp'
+shapefile_path         = r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\vectordata\Abu Rhusheid_Train\Abu_Rhusheid_train.shp'
 vector_data = gpd.read_file(shapefile_path)
 
 # Define raster parameters
 pixel_size = 30  # Define the pixel size (resolution) in map units
-output_raster_path = r'D:\Narss\Hyperspectral Data\Abu Rhusheid_Train\raster_categorical2.tif'
+output_raster_path = r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\vector2raster\raster_categorical.tif'
 
 # Check and transform CRS if needed
 if vector_data.crs is None:
@@ -19,7 +19,7 @@ if vector_data.crs is None:
 
 # Optionally, reproject to a common CRS (if needed)
 # vector_data = vector_data.to_crs(CRS.from_epsg(32636))
-dataset1_path=r'D:\Narss\stacked_hyperspectral_image_VNIR9.tif'
+dataset1_path=r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\tifimages\stacked_hyperspectral_image_VNIR_SWIR.tif'
 
 with rasterio.open(dataset1_path, 'r') as dst:
  imdata=dst.read(6)
