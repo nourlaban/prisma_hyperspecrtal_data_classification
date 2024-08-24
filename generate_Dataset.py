@@ -1,6 +1,7 @@
 import h5py
 import rasterio
 from rasterio.transform import from_origin
+from rasterio.crs import CRS
 
 class HyperspectralImageReader:
     def __init__(self, filename):
@@ -28,7 +29,7 @@ class HyperspectralImageReader:
             'width': self.datasetVNIR.shape[2],
             'count': total_bands,
             'dtype': str(self.datasetVNIR.dtype),
-            'crs': {'init': 'epsg:32636'},
+            'crs': CRS.from_epsg(32636),  # Use CRS object instead of dict
             'transform': transform
         }
 
@@ -52,8 +53,8 @@ class HyperspectralImageReader:
         self.h5file.close()
 
 # Example usage
-h5_file = r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\rawdata\PRS_L2D_STD_20200725083506_20200725083510_0001.he5'
-tif_file = r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\tifimages\stacked_hyperspectral_image_VNIR_SWIR.tif'
+h5_file = r"C:\Users\utente\Desktop\narss\Hyperspectral Data\PRS_L2D_STD_20200725083506_20200725083510_0001\PRS_L2D_STD_20200725083506_20200725083510_0001.he5"
+tif_file = r"C:\Users\utente\Desktop\narss\Hyperspectral Data\PRS_L2D_STD_20200725083506_20200725083510_0001\stacked_hyperspectral_image_VNIR.tif"
 
 reader = HyperspectralImageReader(h5_file)
 reader.open_file()
@@ -63,5 +64,5 @@ reader.set_metadata(
     pixel_size_x=(698097.4382495880126953 - 659247.5) / reader.datasetVNIR.shape[2],
     pixel_size_y=(2743007.5 - 2706767.5) / reader.datasetVNIR.shape[0]
 )
-reader.write_to_geotiff(tif_file)
+reader.write_to_geotiff(r"C:\Users\utente\Desktop\narss 2\generateddataset.tif")
 reader.close()
