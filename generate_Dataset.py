@@ -52,8 +52,8 @@ class HyperspectralImageReader:
         self.h5file.close()
 
 # Example usage
-h5_file = r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\rawdata\PRS_L2D_STD_20200725083506_20200725083510_0001.he5'
-tif_file = r'D:\work\PRISMA Group\prisma_hyperspecrtal_data_classification\data\tifimages\stacked_hyperspectral_image_VNIR_SWIR.tif'
+h5_file = r'D:\Narss\Hyperspectral Data\PRS_L2D_STD_20200725083506_20200725083510_0001\PRS_L2D_STD_20200725083506_20200725083510_0001.he5'
+tif_file = r'D:\Narss\Hyperspectral Data\final output\combined_hyperspectral_image_VNIR_SWIR2.tif'
 
 reader = HyperspectralImageReader(h5_file)
 reader.open_file()
